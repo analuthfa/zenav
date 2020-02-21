@@ -16,7 +16,7 @@ class FrontController extends Controller
         //DAN DI-LOAD 10 DATA PER PAGENYA
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
         //LOAD VIEW INDEX.BLADE.PHP DAN PASSING DATA DARI VARIABLE PRODUCTS
-        return view('ecommerces.index', compact('products'));
+        return view('ecommerce.index', compact('products'));
     }   
 
     public function product()
@@ -26,6 +26,6 @@ class FrontController extends Controller
         //LOAD JUGA DATA KATEGORI YANG AKAN DITAMPILKAN PADA SIDEBAR
         $categories = Category::with(['child'])->withCount(['child'])->getParent()->orderBy('name', 'ASC')->get();
         //LOAD VIEW PRODUCT.BLADE.PHP DAN PASSING KEDUA DATA DIATAS
-        return view('ecommerces.product', compact('products', 'categories'));
+        return view('ecommerce.product', compact('products', 'categories'));
     }
 }
